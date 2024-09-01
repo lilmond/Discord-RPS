@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Discord RPS</title>
+        <link rel="stylesheet" type="text/css" href="./css/discord_rps_style.css"/>
+    </head>
+    <body>
+        <div class="form-container">
+            <h1 class="form-title">Discord RPS</h1>
+            <form id="form">
+                <div class="message-container" id="message_container">
+                    <button class="message-close-button" id="message_close_button">X</button>
+                    <p class="message-text" id="message_text"></p>
+                </div>
+                <div class="form-inputs-container">
+                    <label for="token">TOKEN:</label>
+                    <input type="password" id="token"/>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="name">NAME:</label>
+                            <input type="text" id="name"/>
+                        </div>
+                        <div class="double-input">
+                            <label for="since">SINCE:</label>
+                            <input type="text" id="since"/>
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="status">STATUS:</label>
+                            <select id="status">
+                                <option value="online">Online</option>
+                                <option value="dnd">DND</option>
+                                <option value="idle">Idle</option>
+                                <option value="invisible">Invisible</option>
+                                <option value="offline">Offline</option>
+                            </select>
+                        </div>
+                        <div class="double-input">
+                            <label for="afk">AFK:</label>
+                            <select id="afk">
+                                <option value="false">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="type">TYPE:</label>
+                            <select id="type">
+                                <option value="0">0 - Playing</option>
+                                <option value="1">1 - Streaming</option>
+                                <option value="2">2 - Listening</option>
+                                <option value="3">3 - Watching</option>
+                                <option value="4">4 - Custom</option>
+                                <option value="5">5 - Competing</option>
+                            </select>
+                        </div>
+                        <div class="double-input">
+                            <label for="url">URL:</label>
+                            <input type="text" id="url">
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="created_at">CREATED AT:</label>
+                            <input type="text" id="created_at">
+                        </div>
+                        <div class="double-input">
+                            <label for="timestamps">TIMESTAMPS:</label>
+                            <input type="text" id="timestamps">
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="application_id">APPLICATION ID:</label>
+                            <input type="text" id="application_id">
+                        </div>
+                        <div class="double-input">
+                            <label for="details">DETAILS:</label>
+                            <input type="text" id="details">
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="state">STATE:</label>
+                            <input type="text" id="state">
+                        </div>
+                        <div class="double-input">
+                            <label for="emoji">EMOJI:</label>
+                            <input type="text" id="emoji">
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="party">PARTY JSON:</label>
+                            <input type="text" id="party">
+                        </div>
+                        <div class="double-input">
+                            <label for="assets">ASSETS JSON:</label>
+                            <input type="text" id="assets">
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="secrets">SECRETS JSON:</label>
+                            <input type="text" id="secrets">
+                        </div>
+                        <div class="double-input">
+                            <label for="instance">INSTANCE:</label>
+                            <select id="instance">
+                                <option value="false">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="double-inputs">
+                        <div class="double-input">
+                            <label for="flags">FLAGS:</label>
+                            <input type="text" id="flags">
+                        </div>
+                        <div class="double-input">
+                            <label for="buttons">BUTTONS JSON:</label>
+                            <input type="text" id="buttons"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-buttons-container">
+                    <button type="button" class="blurple-button" id="submit_button">SUBMIT</button>
+                    <button type="button" class="red-button" id="close_button">CLOSE</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script type="text/javascript" src="./scripts/load_elements.js"></script>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+</html>

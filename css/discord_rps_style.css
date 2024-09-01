@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+body {
+    background-color: #0f0f11;
+}
+
+.form-container {
+    background-color: #313338;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 450px;
+    padding: 20px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+.form-container .message-container {
+    border: 1px solid #f0b132;
+    background-color: rgb(240, 177, 50, 0.2);
+    display: none;
+}
+
+.form-container .message-container .message-close-button {
+    float: right;
+    height: 20px;
+    width: 20px;
+    font-size: 100%;
+    background: transparent;
+    color: white;
+}
+
+.form-container .message-container .message-close-button:hover {
+    cursor: pointer;
+}
+
+.form-container .message-container .message-text {
+    color: white;
+    padding: 5px 15px;
+}
+
+.form-container .form-inputs-container {
+    max-height: 300px;
+    overflow: auto;
+    width: calc(100% - 30px);
+    padding: 0 15px 15px 15px;
+}
+
+.form-container .form-title {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    user-select: none;
+}
+
+.form-container label {
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+    user-select: none;
+}
+
+.form-container input {
+    background-color: #1e1f22;
+    width: 100%;
+    height: 40px;
+    font-size: 100%;
+    color: white;
+    border-radius: 5px;
+}
+
+.form-container select {
+    background-color: #1e1f22;
+    width: 100%;
+    height: 40px;
+    font-size: 100%;
+    color: white;
+    border-radius: 5px;
+}
+
+.form-container .double-inputs {
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-container .double-inputs > *:first-child {
+    margin-right: 10px;
+}
+
+.form-container .double-inputs .double-input {
+    width: 205px;
+    float: left;
+}
+
+.form-container .double-inputs .double-input label {
+    width: 100%;
+}
+
+.form-container .double-inputs .double-input input {
+    width: 100%;
+}
+
+.form-container .double-inputs .double-input select {
+    width: 100%;
+}
+
+.form-container .form-buttons-container {
+    background-color: #2b2d31;
+    padding-top: 15px;
+    padding-right: 15px;
+    height: 55px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.form-container .form-buttons-container button {
+    height: 40px;
+    float: right;
+    border-radius: 3px;
+    margin-left: 5px;
+    width: 100px;
+    color: white;
+}
+
+.form-container .form-buttons-container button:hover {
+    cursor: pointer;
+}
+
+.form-container .form-buttons-container .blurple-button {
+    background-color: #5865f2;
+}
+
+.form-container .form-buttons-container .blurple-button:hover {
+    background-color: #4752c4;
+}
+
+.form-container .form-buttons-container .blurple-button:disabled {
+    background-color: #303683;
+}
+
+.form-container .form-buttons-container .red-button {
+    background-color: #da373c;
+}
+
+.form-container .form-buttons-container .red-button:hover {
+    background-color: #a12828;
+}
+
+.form-container .form-buttons-container .red-button:disabled {
+    background-color: #73202c;
+}
