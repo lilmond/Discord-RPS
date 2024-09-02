@@ -113,6 +113,7 @@ body {
 
 .form-container input:disabled {
     background-color: #242529;
+    color: #bababc;
 }
 
 .form-container .double-inputs .double-input select {
@@ -121,6 +122,7 @@ body {
 
 .form-container select:disabled {
     background-color: #242529;
+    color: #bababc;
 }
 
 .form-container .form-buttons-container {
