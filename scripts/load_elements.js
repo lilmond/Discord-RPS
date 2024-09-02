@@ -62,7 +62,7 @@ for (let i = 0; i < autosaveInputs.length; i++) {
     }
 
     element.onchange = () => {
-        console.log(`${element.id} changed: ${element.value}`);
+        /* console.log(`${element.id} changed: ${element.value}`); */
         localStorage.setItem(element.id, element.value);
     };
 };
