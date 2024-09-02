@@ -1,4 +1,5 @@
 const gateWay = "wss://gateway.discord.gg/?v=10&encoding=json"
+const showLogs = false;
 
 var socket = null;
 let keepConnection = false;
@@ -8,13 +9,13 @@ const connect = () => {
     submitButton.disabled = true;
     keepConnection = true;
 
-    console.log("Opening socket...");
+    showLogs ? console.log("Opening socket...") : null;
 
     socket = new WebSocket(gateWay);
     let discordReadyReceived = false;
 
     socket.addEventListener("open", (event) => {
-        console.log("Socket has opened!");
+        showLogs ? console.log("Socket has opened!") : null;
 
         const loginPayload = {
             op: 2,
@@ -50,7 +51,7 @@ const connect = () => {
             },
         }
 
-        console.log(loginPayload);
+        showLogs ? console.log(loginPayload) : null;
 
         socket.send(JSON.stringify(loginPayload));
 
@@ -64,25 +65,25 @@ const connect = () => {
             discordReadyReceived = true;
         }
 
-        console.log(`Message Data: ${event.data}`);
+        showLogs ? console.log(`Message Data: ${event.data}`) : null;
     });
 
     socket.addEventListener("close", (event) => {
-        console.log(`Socket has closed! ${event.data}`);
+        showLogs ? console.log(`Socket has closed! ${event.data}`) : null;
 
         if (!discordReadyReceived) {
             showError("ERROR: Invalid token!");
             submitButton.disabled = false;
             closeButton.disabled = true;
         } else if (keepConnection) {
-            console.log("Reconecting...");
+            showLogs ? console.log("Reconecting...") : null;
             return connect();
         }
 
     });
 
     socket.addEventListener("error", (event) => {
-        console.log("An error has occured with the socket.");
+        showLogs ? console.log("An error has occured with the socket.") : null;
     });
 
     const heartbeatPayload = {
@@ -105,7 +106,6 @@ closeButton.onclick = () => {
     if (socket) {
         keepConnection = false;
         socket.close();
-        console.log("Socket closed!");
     }
 };
 
