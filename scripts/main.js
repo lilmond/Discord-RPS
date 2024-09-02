@@ -6,6 +6,7 @@ let keepConnection = false;
 
 const connect = () => {
     hideError();
+    toggleInputs(true);
     submitButton.disabled = true;
     keepConnection = true;
 
@@ -77,7 +78,8 @@ const connect = () => {
             showLogs ? console.log("Reconecting...") : null;
             return connect();
         }
-
+        
+        toggleInputs(false);
         submitButton.disabled = false;
         closeButton.disabled = true;
 
