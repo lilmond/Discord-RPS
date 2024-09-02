@@ -72,6 +72,20 @@ body {
     user-select: none;
 }
 
+.form-container .input-upper-button {
+    float: right;
+    background-color: transparent;
+    color: rgb(170, 170, 170);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.form-container .input-upper-button:hover {
+    color: rgb(210, 210, 210);
+}
+
 .form-container input {
     background-color: #1e1f22;
     width: 100%;
