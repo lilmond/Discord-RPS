@@ -73,12 +73,13 @@ const connect = () => {
 
         if (!discordReadyReceived) {
             showError("ERROR: Invalid token!");
-            submitButton.disabled = false;
-            closeButton.disabled = true;
-        } else if (keepConnection) {
+        } else if (keepConnection == true) {
             showLogs ? console.log("Reconecting...") : null;
             return connect();
         }
+
+        submitButton.disabled = false;
+        closeButton.disabled = true;
 
     });
 
