@@ -92,15 +92,14 @@ body {
 
 .form-container .double-inputs {
     width: 100%;
-    overflow: hidden;
-}
-
-.form-container .double-inputs > *:first-child {
-    margin-right: 10px;
 }
 
 .form-container .double-inputs .double-input {
-    width: 205px;
+    float: right;
+    width: 49%;
+}
+
+.form-container .double-inputs > *:first-child {
     float: left;
 }
 
