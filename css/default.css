@@ -111,8 +111,16 @@ body {
     width: 100%;
 }
 
+.form-container input:disabled {
+    background-color: #242529;
+}
+
 .form-container .double-inputs .double-input select {
     width: 100%;
+}
+
+.form-container select:disabled {
+    background-color: #242529;
 }
 
 .form-container .form-buttons-container {
