@@ -90,3 +90,15 @@ const isValidJSON = str => {
         return false;
     }
 };
+
+const toggleInputs = (disabled = false) => {
+    token.disabled = disabled;
+    
+    for (let i = 0; i < autosaveInputs.length; i++) {
+        let elementName = autosaveInputs[i];
+        let elementId = elementIds[elementName];
+        let element = document.getElementById(elementId);
+
+        element.disabled = disabled;
+    }
+};
