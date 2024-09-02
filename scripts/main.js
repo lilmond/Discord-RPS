@@ -1,10 +1,12 @@
 const gateWay = "wss://gateway.discord.gg/?v=10&encoding=json"
 
 var socket = null;
+let keepConnection = false;
 
-submitButton.onclick = () => {
+const connect = () => {
     hideError();
     submitButton.disabled = true;
+    keepConnection = true;
 
     console.log("Opening socket...");
 
@@ -70,19 +72,38 @@ submitButton.onclick = () => {
 
         if (!discordReadyReceived) {
             showError("ERROR: Invalid token!");
+            submitButton.disabled = false;
+            closeButton.disabled = true;
+        } else if (keepConnection) {
+            console.log("Reconecting...");
+            return connect();
         }
 
-        submitButton.disabled = false;
-        closeButton.disabled = true;
     });
 
     socket.addEventListener("error", (event) => {
         console.log("An error has occured with the socket.");
     });
+
+    const heartbeatPayload = {
+        op: 1,
+        d: null
+    }
+
+    const keepAlive = setInterval(() => {
+        if (socket.readyState == 1) {
+            socket.send(JSON.stringify(heartbeatPayload));
+        } else {
+            clearInterval(keepAlive);
+        }
+    }, 10000);
 };
+
+submitButton.onclick = connect;
 
 closeButton.onclick = () => {
     if (socket) {
+        keepConnection = false;
         socket.close();
         console.log("Socket closed!");
     }
