@@ -1,4 +1,4 @@
-const gateWay = "wss://gateway.discord.gg/?v=10&encoding=json"
+const gateway = "wss://gateway.discord.gg/?v=10&encoding=json"
 const showLogs = false;
 
 var socket = null;
@@ -11,7 +11,7 @@ const connect = () => {
 
     showLogs ? console.log("Opening socket...") : null;
 
-    socket = new WebSocket(gateWay);
+    socket = new WebSocket(gateway);
     let discordReadyReceived = false;
 
     socket.addEventListener("open", (event) => {
