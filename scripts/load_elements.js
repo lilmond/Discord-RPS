@@ -3,6 +3,8 @@ const elementIds = {
     messageContainer: "message_container",
     messageText: "message_text",
     messageCloseButton: "message_close_button",
+    saveTokenButton: "save_token_button",
+    unsaveTokenButton: "unsave_token_button",
     token: "token",
     rpsName: "name",
     since: "since",
@@ -102,3 +104,13 @@ const toggleInputs = (disabled = false) => {
         element.disabled = disabled;
     }
 };
+
+saveTokenButton.addEventListener("click", () => {
+    localStorage.setItem("token", token.value);
+});
+
+unsaveTokenButton.addEventListener("click", () => {
+    localStorage.removeItem("token");
+});
+
+token.value = localStorage.getItem("token") || "";
