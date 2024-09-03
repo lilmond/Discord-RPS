@@ -142,6 +142,15 @@ submitButton.onclick = () => {connect()};
 
 closeButton.onclick = () => {
     if (socket) {
+        if (socket.readyState == 1) {
+            const offlinePresencePayload = {
+                op: 3,
+                d: null
+            };
+
+            socket.send(JSON.stringify(offlinePresencePayload));
+        };
+
         keepConnection = false;
         socket.close();
     }
