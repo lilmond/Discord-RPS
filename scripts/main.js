@@ -1,8 +1,11 @@
 const gateway = "wss://gateway.discord.gg/?v=10&encoding=json"
-const showLogs = false;
+let showLogs = false;
+let showMessages = false; // Shows the websocket messages in the console.
 
 var socket = null;
 let keepConnection = false;
+let lastSessionId = null;
+let lastSequence = null;
 
 const getPresenceJson = () => {
     return {
@@ -29,7 +32,10 @@ const getPresenceJson = () => {
     };
 };
 
-const connect = () => {
+/**
+* @param {String} reconnect - Whether to reconnect from the last session using lastSessionId and lastSequence or not.
+**/
+const connect = (reconnect = false) => {
     hideError();
     submitButton.disabled = true;
     keepConnection = true;
@@ -42,17 +48,30 @@ const connect = () => {
     socket.addEventListener("open", (event) => {
         showLogs ? console.log("Socket has opened!") : null;
 
-        const loginPayload = {
-            op: 2,
-            d: {
-                token: token.value,
-                properties: {
-                    os: "linux",
-                    browser: "disco",
-                    device: "disco"
+        let loginPayload;
+
+        if (reconnect) {
+            loginPayload = {
+                op: 6,
+                d: {
+                    token: token.value,
+                    session_id: lastSessionId,
+                    seq: lastSequence
+                }
+            };
+        } else {
+            loginPayload = {
+                op: 2,
+                d: {
+                    token: token.value,
+                    properties: {
+                        os: "linux",
+                        browser: "disco",
+                        device: "disco"
+                    },
+                    presence: getPresenceJson()
                 },
-                presence: getPresenceJson()
-            },
+            }
         }
 
         showLogs ? console.log(loginPayload) : null;
@@ -67,10 +86,15 @@ const connect = () => {
         const message = JSON.parse(event.data);
 
         if (message.t == "READY") {
+            lastSessionId = message.d.session_id;
             discordReadyReceived = true;
         }
 
-        showLogs ? console.log(`Message Data: ${event.data}`) : null;
+        if (message.s) {
+            lastSequence = message.s;
+        }
+
+        showMessages ? console.log(`Message Data: ${event.data}`) : null;
     });
 
     socket.addEventListener("close", (event) => {
@@ -80,7 +104,7 @@ const connect = () => {
             showError("ERROR: Invalid token!");
         } else if (keepConnection == true) {
             showLogs ? console.log("Reconecting...") : null;
-            return connect();
+            return connect(true);
         }
         
         submitButton.disabled = false;
@@ -107,7 +131,7 @@ const connect = () => {
     }, 10000);
 };
 
-submitButton.onclick = connect;
+submitButton.onclick = () => {connect()};
 
 closeButton.onclick = () => {
     if (socket) {
