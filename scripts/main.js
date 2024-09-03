@@ -145,9 +145,7 @@ updateButton.onclick = () => {
         if (socket.readyState == 1) {
             const presencePayload = {
                 op: 3,
-                d: {
-                    presence: getPresenceJson()
-                },
+                d: getPresenceJson()
             }
     
             socket.send(JSON.stringify(presencePayload));
