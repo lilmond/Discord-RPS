@@ -1,5 +1,5 @@
 const gateway = "wss://gateway.discord.gg/?v=10&encoding=json"
-let showLogs = false;
+let showLogs = false; // Used for debugging purposes.
 let showMessages = false; // Shows the websocket messages in the console.
 
 var socket = null;
