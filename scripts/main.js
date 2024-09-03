@@ -6,6 +6,7 @@ var socket = null;
 let keepConnection = false;
 let lastSessionId = null;
 let lastSequence = null;
+let hasReconnected = false;  // This will be temporarily used since reconnecting doesn't properly work, as Discord seems to reject the client when the op code 6 was sent twice. Sooo yeah, you can only reconnect once for now.
 
 const getPresenceJson = () => {
     return {
@@ -43,7 +44,14 @@ const connect = (reconnect = false) => {
     showLogs ? console.log("Opening socket...") : null;
 
     socket = new WebSocket(gateway);
-    let discordReadyReceived = false;
+
+    let discordReadyReceived;
+
+    if (reconnect) {
+        discordReadyReceived = true;
+    } else {
+        discordReadyReceived = false;
+    }
 
     socket.addEventListener("open", (event) => {
         showLogs ? console.log("Socket has opened!") : null;
