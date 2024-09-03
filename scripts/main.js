@@ -4,9 +4,33 @@ const showLogs = false;
 var socket = null;
 let keepConnection = false;
 
+const getPresenceJson = () => {
+    return {
+        activities: [{
+            name: rpsName.value || null,
+            type: !isNaN(parseInt(type.value)) ? parseInt(type.value): null,
+            url: url.value || null,
+            created_at: !isNaN(parseInt(createdAt.value)) ? parseInt(createdAt.value) : null,
+            timestamps: isValidJSON(timestamps.value) ? JSON.parse(timestamps.value) : null,
+            application_id: applicationId.value || null,
+            details: details.value || null,
+            state: state.value || null,
+            emoji: isValidJSON(emoji.value) ? JSON.parse(emoji.value) : null,
+            party: isValidJSON(party.value) ? JSON.parse(party.value) : null,
+            assets: isValidJSON(assets.value) ? JSON.parse(assets.value) : null,
+            secrets: isValidJSON(secrets.value) ? JSON.parse(secrets.value) : null,
+            instance: instance.value == "true",
+            flags: !isNaN(parseInt(flags.value)) ? parseInt(flags.value) : null,
+            buttons: isValidJSON(buttons.value) ? JSON.parse(buttons.value) : null
+        }],
+        status: rpsStatus.value,
+        since: !isNaN(parseInt(since.value)) ? parseInt(since.value): null,
+        afk: afk.value == "true"
+    };
+};
+
 const connect = () => {
     hideError();
-    toggleInputs(true);
     submitButton.disabled = true;
     keepConnection = true;
 
@@ -27,28 +51,7 @@ const connect = () => {
                     browser: "disco",
                     device: "disco"
                 },
-                presence: {
-                    activities: [{
-                        name: rpsName.value || null,
-                        type: !isNaN(parseInt(type.value)) ? parseInt(type.value): null,
-                        url: url.value || null,
-                        created_at: !isNaN(parseInt(createdAt.value)) ? parseInt(createdAt.value) : null,
-                        timestamps: isValidJSON(timestamps.value) ? JSON.parse(timestamps.value) : null,
-                        application_id: applicationId.value || null,
-                        details: details.value || null,
-                        state: state.value || null,
-                        emoji: isValidJSON(emoji.value) ? JSON.parse(emoji.value) : null,
-                        party: isValidJSON(party.value) ? JSON.parse(party.value) : null,
-                        assets: isValidJSON(assets.value) ? JSON.parse(assets.value) : null,
-                        secrets: isValidJSON(secrets.value) ? JSON.parse(secrets.value) : null,
-                        instance: instance.value == "true",
-                        flags: !isNaN(parseInt(flags.value)) ? parseInt(flags.value) : null,
-                        buttons: isValidJSON(buttons.value) ? JSON.parse(buttons.value) : null
-                    }],
-                    status: rpsStatus.value,
-                    since: !isNaN(parseInt(since.value)) ? parseInt(since.value): null,
-                    afk: afk.value == "true"
-                }
+                presence: getPresenceJson()
             },
         }
 
@@ -57,6 +60,7 @@ const connect = () => {
         socket.send(JSON.stringify(loginPayload));
 
         closeButton.disabled = false;
+        updateButton.disabled = false;
     });
 
     socket.addEventListener("message", (event) => {
@@ -79,9 +83,9 @@ const connect = () => {
             return connect();
         }
         
-        toggleInputs(false);
         submitButton.disabled = false;
         closeButton.disabled = true;
+        updateButton.disabled = true;
 
     });
 
@@ -112,8 +116,24 @@ closeButton.onclick = () => {
     }
 };
 
+updateButton.onclick = () => {
+    if (socket) {
+        if (socket.readyState == 1) {
+            const presencePayload = {
+                op: 3,
+                d: {
+                    presence: getPresenceJson()
+                },
+            }
+    
+            socket.send(JSON.stringify(presencePayload));
+        }
+    }
+};
+
 const main = () => {
     closeButton.disabled = true;
+    updateButton.disabled = true;
 };
 
 main();
