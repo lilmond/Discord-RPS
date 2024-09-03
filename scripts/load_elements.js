@@ -25,7 +25,8 @@ const elementIds = {
     flags: "flags",
     buttons: "buttons",
     closeButton: "close_button",
-    submitButton: "submit_button"
+    submitButton: "submit_button",
+    updateButton: "update_button"
 };
 
 const autosaveInputs = [
