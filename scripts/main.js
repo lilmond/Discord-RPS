@@ -73,8 +73,8 @@ const connect = (reconnect = false) => {
                     token: token.value,
                     properties: {
                         os: "linux",
-                        browser: "disco",
-                        device: "disco"
+                        browser: device.value,
+                        device: device.value
                     },
                     presence: getPresenceJson()
                 },
