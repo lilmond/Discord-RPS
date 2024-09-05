@@ -33,10 +33,11 @@ const getPresenceJson = () => {
 };
 
 /**
-* @param {String} reconnect - Whether to reconnect from the last session using lastSessionId and lastSequence or not.
+* @param {Boolean} reconnect - Whether to reconnect from the last session using lastSessionId and lastSequence or not.
 **/
 const connect = (reconnect = false) => {
     hideError();
+    toggleUneditableInputs(true);
     submitButton.disabled = true;
     keepConnection = true;
 
@@ -117,6 +118,7 @@ const connect = (reconnect = false) => {
         submitButton.disabled = false;
         closeButton.disabled = true;
         updateButton.disabled = true;
+        toggleUneditableInputs(false);
 
     });
 
