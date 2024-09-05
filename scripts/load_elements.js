@@ -6,6 +6,7 @@ const elementIds = {
     saveTokenButton: "save_token_button",
     unsaveTokenButton: "unsave_token_button",
     token: "token",
+    device: "device",
     rpsName: "name",
     since: "since",
     rpsStatus: "status",
@@ -47,7 +48,8 @@ const autosaveInputs = [
     "secrets",
     "instance",
     "flags",
-    "buttons"
+    "buttons",
+    "device"
 ];
 
 for (let elementId in elementIds) {
