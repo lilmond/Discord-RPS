@@ -52,6 +52,10 @@ const autosaveInputs = [
     "device"
 ];
 
+const uneditableInputs = [
+    "device"
+];
+
 for (let elementId in elementIds) {
     window[elementId] = document.getElementById(elementIds[elementId]);
 };
@@ -64,7 +68,7 @@ for (let i = 0; i < autosaveInputs.length; i++) {
 
     if (savedValue) {
         element.value = localStorage.getItem(element.id);
-    }
+    };
 
     element.onchange = () => {
         /* console.log(`${element.id} changed: ${element.value}`); */
@@ -93,19 +97,17 @@ const isValidJSON = str => {
         return true;
     } catch (e) {
         return false;
-    }
+    };
 };
 
-const toggleInputs = (disabled = false) => {
-    token.disabled = disabled;
-    
-    for (let i = 0; i < autosaveInputs.length; i++) {
-        let elementName = autosaveInputs[i];
+const toggleUneditableInputs = (disabled = false) => {
+    for (let i = 0; i < uneditableInputs.length; i++) {
+        let elementName = uneditableInputs[i];
         let elementId = elementIds[elementName];
         let element = document.getElementById(elementId);
 
         element.disabled = disabled;
-    }
+    };
 };
 
 saveTokenButton.addEventListener("click", () => {
